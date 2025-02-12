@@ -12,7 +12,27 @@ const app = express();
 
 // This will only handle GET call to/user
 app.get("/user", (req, res) => {
-  res.send({ firstName: "Akshay", lastName: "Tyagi" });
+  res.send({ firstName: "Akshay", lastName: "Saini" });
+});
+
+// Means that b is optional
+app.get("/ab?c", (req, res) => {
+  res.send({ firstName: "Cristiano", lastName: "Ronaldo" });
+});
+
+//! Can group also, here bc should be optional
+// app.get("/a(bc)?d", (req, res) => {
+//   res.send({ firstName: "Cristiano", lastName: "Ronaldo" });
+// });
+
+// Means that a should be at first and c should be at last, in middle it could be anything
+app.use("/ab+c", (req, res) => {
+  res.send({ firstName: "James", lastName: "Maddison" });
+});
+
+// Means that ab should be at start and cs should at last in between it could be anything
+app.use("/ab*cd", (req, res) => {
+  res.send({ firstName: "Cristian", lastName: "Romero" });
 });
 
 app.post("/user", (req, res) => {
