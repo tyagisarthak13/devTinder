@@ -4,14 +4,27 @@ const express = require("express");
 
 const app = express();
 
-app.use("/", (req, res) => {
-  res.send("Namaste Sarthak");
+//! These are called route handlers
+//! Order of these routes matters a lot
+// app.use("/user", (req, res) => {
+//   res.send("HAHAHAHAHAHAHAHA");
+// });
+
+// This will only handle GET call to/user
+app.get("/user", (req, res) => {
+  res.send({ firstName: "Akshay", lastName: "Tyagi" });
 });
 
-app.use("/hello", (req, res) => {
-  res.send("Hello, hello, hello!");
+app.post("/user", (req, res) => {
+  // saving data to DB
+  res.send("Data successfully saved to the database");
 });
 
+app.delete("/user", (req, res) => {
+  res.send("Deleted successfully!");
+});
+
+// This will match all the HTTPmethod API calls to /test
 app.use("/test", (req, res) => {
   res.send("Hello from the server");
 });
