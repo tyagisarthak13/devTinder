@@ -10,6 +10,23 @@ const app = express();
 //   res.send("HAHAHAHAHAHAHAHA");
 // });
 
+app.get("/user", (req, res) => {
+  console.log(req.query);
+  res.send({ firstName: "Harry", lastName: "Kane" });
+});
+
+//! Dynamic route
+app.get("/user/:userId", (req, res) => {
+  console.log(req.params);
+  res.send({ firstName: "Harry", lastName: "Kane" });
+});
+
+//! Also a dynamic route
+app.get("/user/:userId/:name/:password", (req, res) => {
+  console.log(req.params);
+  res.send({ firstName: "Harry", lastName: "Kane" });
+});
+
 // This will only handle GET call to/user
 app.get("/user", (req, res) => {
   res.send({ firstName: "Akshay", lastName: "Saini" });
