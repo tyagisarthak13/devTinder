@@ -45,6 +45,33 @@ app.get("/feed", async (req, res) => {
   }
 });
 
+//! Delete a user from the database
+app.delete("/user", async (req, res) => {
+  const userId = req.body.userId;
+  try {
+    // const user = await User.findByIdAndDelete({_id: userId}); use this or below line of code
+    const user = await User.findByIdAndDelete(userId);
+    res.send("User deleted successfully");
+  } catch (errr) {
+    res.status(400).send("Something went wrong!");
+  }
+});
+
+//! Update data from the database
+app.patch("/user", async (req, res) => {
+  const userId = req.body.userId;
+  const data = req.body;
+  try {
+    const user = await User.findByIdAndUpdate({ _id: userId }, data, {
+      returnDocument: "before",
+    });
+    console.log(user);
+    res.send("User updated successfully");
+  } catch (err) {
+    res.status(400).send("Something went wrong");
+  }
+});
+
 //! NOTE - Before you start your application your database should be cpnnected and that is why we have done app.listen inside
 connectDB()
   .then(() => {
