@@ -2,7 +2,7 @@
 
 const express = require("express");
 const connectDB = require("./config/database");
-const app = express();
+const app = express(); //creating an instance of express js application
 const User = require("./models/user");
 
 app.use(express.json());
@@ -64,15 +64,16 @@ app.patch("/user", async (req, res) => {
   try {
     const user = await User.findByIdAndUpdate({ _id: userId }, data, {
       returnDocument: "before",
+      runValidators: true,
     });
-    console.log(user);
+    // console.log(user);
     res.send("User updated successfully");
   } catch (err) {
-    res.status(400).send("Something went wrong");
+    res.status(400).send("UPDATE FAILED: " + err.message);
   }
 });
 
-//! NOTE - Before you start your application your database should be cpnnected and that is why we have done app.listen inside
+//! NOTE - Before you start your application your database should be co nnected and that is why we have done app.listen inside
 connectDB()
   .then(() => {
     console.log("Database connection established");
