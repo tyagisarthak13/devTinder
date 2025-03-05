@@ -18,3 +18,5 @@
 => validate function will only run on new documents, but if we are tyring to update a document this validate function will not run by default. We have to enable it to run on update methods.
 
 => The Object.keys() method returns an array of a given object’s own enumerable property names (keys). The keys are returned in the same order as they would be in a normal loop.
+
+=> If we are making a field unique in MONGODB, it automatically creates index
